@@ -1,0 +1,96 @@
+﻿@model IEnumerable<StudentThesis.Models.Thesis>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container-fluid py-4 ">
+
+    <div class="card shadow mb-4">
+        <div class="card-header  py-3" style="background-image: linear-gradient(to bottom right, #2EAAFA, #8C04DB); ">
+            <div class="d-flex align-items-center justify-content-between">
+
+                <h4 class="m-0 font-weight-bold text-white">Initial Thesis List</h4>
+              
+            </div>
+        </div>
+        <div class="card-body">
+            <br />
+            <div class="table-responsive">
+
+                <table class="table datatable table-bordered table-hover" id="" width="100%" cellspacing="0">
+                    <thead style="background-image: linear-gradient(#FFFFFF, #E7E7E7);">
+                        <tr>
+                            <th>
+                                Title
+                            </th>                     
+                            <th>
+                                Year
+                            </th>
+                            <th>
+                                Thematic Area
+                            </th>
+                            <th>
+                                Authors
+                            </th>
+                            <th>
+                                Course
+                            </th>
+                            
+                            <th style="text-align:right;">
+
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                
+                                <td>
+                                    @(((DateTime)item.Year).ToString("yyyy"))
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ThematicArea)
+                                </td>
+                                <td>
+                                    @foreach (var thesisMember in item.ThesisMembers)
+                                    {
+                                        var member = thesisMember.Member;
+                                        @Html.DisplayFor(modelItem => member.MemberName)
+                                        <br>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Course)
+                                </td>
+                               
+                                <td style="text-align:right; vertical-align:middle;">
+                                    <div class="btn-group-vertical">
+
+                                        <button type="button" class="btn btn-light rounded mb-2" style="background-image: linear-gradient(to bottom right,#0052A2, #00172D);">
+                                            @Html.ActionLink(" ", "Edit", new { id = item.ThesisID }, new { @style = "color:white;", @class = "bx bxs-edit" })
+                                        </button>
+
+                                       
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

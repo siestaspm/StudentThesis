@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a9b0d2c8dea4425fa5089d07cba86eb9" Name="Diagram1">
+        <EntityTypeShape EntityType="Student_ThesisModel.C__MigrationHistory" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.AspNetRoles" Width="1.5" PointX="8.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.AspNetUserClaims" Width="1.5" PointX="13.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.AspNetUserLogins" Width="1.5" PointX="13.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.AspNetUsers" Width="1.5" PointX="11" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.Author" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.AuthorCategory" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.Files" Width="1.5" PointX="6" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.FinalPanelist" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.FinalPanelistMembers" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.Member" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.Panelist" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.PanelistMembers" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.Research" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.Thesis" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.ThesisAuthor" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.ThesisFiles" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Student_ThesisModel.ThesisMembers" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="Student_ThesisModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_ThesisAuthor_Author" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_Research_AuthorCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_Thesis_AuthorCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_ThesisFiles_Files" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_FinalPanelistMembers_FinalPanelist" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_FinalPanelistMembers_Thesis" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_ThesisMembers_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_PanelistMembers_Panelist" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_PanelistMembers_Thesis" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_ThesisAuthor_Research" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_ThesisFiles_Thesis" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.FK_ThesisMembers_Thesis" ManuallyRouted="false" />
+        <AssociationConnector Association="Student_ThesisModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

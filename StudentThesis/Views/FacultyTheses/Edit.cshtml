@@ -1,0 +1,88 @@
+﻿@model StudentThesis.Models.Thesis
+
+@{
+    ViewBag.Title = "Edit";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" integrity="sha512-S1KCHv7Dg9pfMJS9BBwB3fozyA59E+yYQ8HwkgPmD5T32OJ0OhR0s5gH6zJITV/M2Q3AmPFuA1C2AnFA8z7rdw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-5SwZar3ZupuC6Rvkg3l9IyQj6aVXIRaKo3h/ERPHhPcbcIev+7pohu0TEaEkmQz4gf3Hv5+fNc10DX3TYgIgLw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" integrity="sha512-pFh1yA7v5VwJZk5bj2bV5lVjXXBfSuvdvMnbISG0WjqABKdY2Y9IskL0FDUWiPXpyBUc5IQIeRL3ske2rNvfvQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<div class="container-fluid py-4">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3" style="background-image: linear-gradient(to bottom right, #2EAAFA, #8C04DB); ">
+            <h4 class="m-0 font-weight-bold text-white">Edit Title & Thematic Area</h4>
+        </div>
+        <div class="card-body">
+
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ThesisID)
+                <br />
+                <div class="row g-3">
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row g-3">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.ThematicArea, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                            @Html.ValidationMessageFor(model => model.ThematicArea, "", new { @class = "text-danger" })
+                            <label>Thematic Area</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="form-floating mb-3 visually-hidden">
+                        @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                        @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" value="Create" class="btn btn-light rounded-pill" style="background-image: linear-gradient(to bottom left,#C7F800, #078513); color: white;">
+                        <i class="bx bx-plus" style="color: #ffffff;"></i> Save
+                    </button>
+                    <hr />
+                </div>
+
+            }
+
+            <button type="button" class="btn btn-light rounded-pill" style="background-image: linear-gradient(to bottom right,#0052A2, #00172D);">
+                <i class="bx bxs-chevrons-left" style="color: #ffffff;"></i>
+                @Html.ActionLink("Back to List", "Index", null, new { @style = "color:white;" })
+            </button>
+
+            @section Scripts {
+                <script>
+                    $(document).ready(function () {
+                        $('.datetimepicker').datetimepicker({
+                            format: 'MM/DD/YYYY hh:mm A'
+                        });
+                    });
+                </script>
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,106 @@
+﻿@model StudentThesis.Models.Research
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Research</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Keywords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThesisAdviser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThesisAdviser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechnicalCritic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechnicalCritic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abstract)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abstract)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfResearch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfResearch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThematicArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThematicArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullPaper)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullPaper)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsArchived)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsArchived)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorCategory.AuthorCategory1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorCategory.AuthorCategory1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResearchID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

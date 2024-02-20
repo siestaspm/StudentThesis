@@ -1,0 +1,116 @@
+﻿@model IEnumerable<StudentThesis.Models.Research>
+@using System.Text
+
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid py-4">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3" style="background-image: linear-gradient(to bottom right, #2EAAFA, #8C04DB); ">
+            <h4 class="m-0 font-weight-bold text-white">Available Researches</h4>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <br />
+
+                <table class="table datatable table-bordered table-hover" id="" width="100%" cellspacing="0">
+                    <thead style="background-image: linear-gradient(#FFFFFF, #E7E7E7);">
+                        <tr>
+                            <th>
+                                Research Title
+                            </th>
+                            <th>
+                                Year
+                            </th>
+                            <th>
+                                Keywords
+                            </th>
+                            <th>
+                                Thesis Adviser
+                            </th>
+                            <th>
+                                Technical Critic
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Abstract)
+                            </th>
+                            <th>
+                                Type of Research
+                            </th>
+                            <th>
+                                Thematic Area
+                            </th>
+                            <th>
+                                Full Paper
+                            </th>
+                            <th>
+                                Author Category
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @(((DateTime)item.Year).ToString("yyyy"))
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Keywords)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ThesisAdviser)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TechnicalCritic)
+                                </td>
+                                <td>
+                                    @if (item.Abstract != null)
+                                    {
+                                        @Html.ActionLink("Download", "ViewAbstract", new { id = item.ResearchID })
+                                        <br />
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TypeOfResearch)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ThematicArea)
+                                </td>
+                                <td>
+                                    @if (item.FullPaper != null)
+                                    {
+                                        @Html.ActionLink("Download", "ViewFullPaper", new { id = item.ResearchID })
+                                        <br />
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AuthorCategory.AuthorCategory1)
+                                </td>
+
+                                <td style="text-align:center; vertical-align:middle;">
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+          
+                </div>
+
+        </div>
+            </div>
+
+
+
+
+         

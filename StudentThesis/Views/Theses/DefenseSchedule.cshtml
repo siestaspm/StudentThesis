@@ -1,0 +1,136 @@
+﻿@model IEnumerable<StudentThesis.Models.Thesis>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid py-4 ">
+
+    <div class="card shadow mb-4">
+        <div class="card-header  py-3" style="background-image: linear-gradient(to bottom right, #2EAAFA, #8C04DB); ">
+            <div class="d-flex align-items-center justify-content-between">
+
+                <h4 class="m-0 font-weight-bold text-white">Defense Schedule List</h4>
+                <button type="button" onclick="printTable()" class="btn btn-light rounded mb-2" style="background-image: linear-gradient(to bottom right,#96E084, #66995A);">
+                    Print table
+                    </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <br />
+            <div class="table-responsive" id="tableContainer">
+                <table class="table datatable table-bordered table-hover" id="" width="100%" cellspacing="0">
+                    <thead style="background-image: linear-gradient(#FFFFFF, #E7E7E7);">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                Schedule Date
+                            </th>
+                            <th>
+                                Thesis Adviser
+                            </th>
+                            <th>
+                                Thematic Area
+                            </th>
+                            <th>
+                                Course
+                            </th>
+                            <th>
+                                Technical Critic
+                            </th>
+                            <th>
+                                Authors
+                            </th>
+                            <th>
+                                Panelist
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Room)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ScheduleDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ThesisAdviser)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ThematicArea)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Course)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TechnicalCritic)
+                                </td>
+                                <td>
+                                    @foreach (var thesisMember in item.ThesisMembers)
+                                    {
+                                        var member = thesisMember.Member;
+                                        @Html.DisplayFor(modelItem => member.MemberName)
+                                        <br>
+                                    }
+                                </td>
+                                <td>
+                                    @foreach (var panelistMember in item.PanelistMembers)
+                                    {
+                                        var panelist = panelistMember.Panelist;
+                                        @Html.DisplayFor(modelItem => panelist.PanelistName)
+                                        <br>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Room)
+                                </td>
+
+                                <td style="text-align:right; vertical-align:middle;">
+                                    <div class="btn-group-vertical">
+
+                                        <button type="button" class="btn btn-light rounded mb-2" style="background-image: linear-gradient(to bottom right,#96E084, #66995A);">
+                                            @Html.ActionLink(" ", "Approve", new { id = item.ThesisID }, new { @style = "color:white;", @class = "ri-check-fill" })
+                                        </button>
+
+                                        <button type="button" class="btn btn-light rounded mb-2" style="background-image: linear-gradient(to bottom right,#0052A2, #00172D);">
+                                            @Html.ActionLink(" ", "Edit", new { id = item.ThesisID }, new { @style = "color:white;", @class = "bx bxs-edit" })
+                                        </button>
+
+
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function printTable() {
+        var printContents = document.getElementById("tableContainer").innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+
+
+

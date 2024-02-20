@@ -1,0 +1,154 @@
+﻿@model StudentThesis.Models.Research
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container-fluid py-4">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3" style="background-image: linear-gradient(to bottom right, #2EAAFA, #8C04DB); ">
+            <h4 class="m-0 font-weight-bold text-white">Add New Research</h4>
+        </div>
+        <div class="card-body">
+
+
+
+            @using (Html.BeginForm("Create", "Researches", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+
+
+                <br />
+                <div class="row g-3">
+
+
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            <label>Title</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                            @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                            <label>Year</label>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="row g-3">
+
+
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.DropDownList("AuthorCategoryID", null, "", htmlAttributes: new { @class = "form-select", @id = "floatingSelect" })
+                            @Html.ValidationMessageFor(model => model.AuthorCategoryID, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.AuthorCategoryID, "Author Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.AuthorName, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " "  } })
+                            @Html.ValidationMessageFor(model => model.AuthorName, "", new { @class = "text-danger" })
+                            <label>Authors</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.ThesisAdviser, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " "  } })
+                            @Html.ValidationMessageFor(model => model.ThesisAdviser, "", new { @class = "text-danger" })
+                            <label>Thesis Adviser</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row g-3">
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                            @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
+                            <label>Keywords</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.TechnicalCritic, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " "} })
+                            @Html.ValidationMessageFor(model => model.TechnicalCritic, "", new { @class = "text-danger" })
+                            <label>Technical Critic</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.TypeOfResearch, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " "} })
+                            @Html.ValidationMessageFor(model => model.TypeOfResearch, "", new { @class = "text-danger" })
+                            <label>Type Of Research</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.ThematicArea, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                            @Html.ValidationMessageFor(model => model.ThematicArea, "", new { @class = "text-danger" })
+                            <label>Thematic Area</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col col-md-4">
+                    @Html.LabelFor(model => model.Abstract, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <input type="file" class="form-control" id="abstractFile" name="abstractFile" required>
+                    <hr />
+                </div>
+
+
+
+                <div class="col col-md-4">
+                    @Html.LabelFor(model => model.FullPaper, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <input type="file" class="form-control" id="fullPaperFile" name="fullPaperFile" required>
+                    <br />
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <button type="submit" value="Create" class="btn btn-light rounded-pill" style="background-image: linear-gradient(to bottom left,#C7F800, #078513); color: white;">
+                        <i class="bx bx-plus" style="color: #ffffff;"></i> Save
+                    </button>
+                    <hr />
+                </div>
+
+            }
+
+            <button type="button" class="btn btn-light rounded-pill" style="background-image: linear-gradient(to bottom right,#0052A2, #00172D);">
+                <i class="bx bxs-chevrons-left" style="color: #ffffff;"></i>
+                @Html.ActionLink("Back to List", "Index", null, new { @style = "color:white;" })
+            </button>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+    </div>
+</div>
+
+

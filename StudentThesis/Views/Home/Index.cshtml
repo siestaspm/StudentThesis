@@ -1,0 +1,527 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container-fluid py-4 ">
+    <section class="section dashboard">
+
+        <div class="row">
+
+
+            <div class="col-xxl-4 col-md-6">
+                <div class="card info-card sales-card">
+
+                    <div class="filter">
+                        <a class="icon" href="~/BarChart/Index"><i class='bx bxs-bar-chart-alt-2'></i></a>
+
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Students <span>| Thesis</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bx bxs-user-badge"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@ViewBag.NumberOfStudentThesis</h6>
+                                <span class="text-muted small pt-2 ps-1">Thesis</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-xxl-4 col-md-6">
+                <div class="card info-card revenue-card">
+
+                    <div class="filter">
+                        <a class="icon" href="~/BarChart/Faculty"><i class="bx bxs-bar-chart-alt-2"></i></a>
+
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Faculty <span>| Thesis</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bx bxs-briefcase-alt"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@ViewBag.NumberOfThesis</h6>
+                                <span class="text-muted small pt-2 ps-1">Thesis</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-xxl-4 col-xl-12">
+
+                <div class="card info-card customers-card">
+
+                    <div class="filter">
+
+
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Overall <span>| Thesis & Researches</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@ViewBag.NumberOfOverallThesis</h6>
+                                <span class="text-muted small pt-2 ps-1">Thesis & Researches </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+                <div class="card" style="height:94%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Faculty & Student Thematic Areas</h5>
+
+                        <!-- Bar Chart -->
+                        <canvas id="barChart" style="max-height: 400px;"></canvas>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                fetch('/Home/GetThematicAreasData')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const labels = data.Labels;
+                                        const counts = data.Counts;
+                                        const backgroundColors = [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)',
+                                            'rgba(255, 205, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(201, 203, 207, 0.2)'
+                                        ];
+                                        const borderColors = [
+                                            'rgb(255, 99, 132)',
+                                            'rgb(255, 159, 64)',
+                                            'rgb(255, 205, 86)',
+                                            'rgb(75, 192, 192)',
+                                            'rgb(54, 162, 235)',
+                                            'rgb(153, 102, 255)',
+                                            'rgb(201, 203, 207)'
+                                        ];
+
+                                        new Chart(document.querySelector('#barChart'), {
+                                            type: 'bar',
+                                            data: {
+                                                labels: labels,
+                                                datasets: [{
+                                                    label: 'Thematic Areas',
+                                                    data: counts,
+                                                    backgroundColor: backgroundColors.slice(0, counts.length),
+                                                    borderColor: borderColors.slice(0, counts.length),
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                            });
+                        </script>
+                        <!-- End Bar Chart -->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Student Thesis Status</h5>
+
+                        <!-- Doughnut Chart -->
+                        <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                // Make an AJAX request to retrieve the chart data
+                                fetch('/Home/GetChartData')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const labels = data.map(item => item.Status);
+                                        const counts = data.map(item => item.Count);
+                                        const backgroundColors = [
+                                            'rgb(201, 203, 207)',
+                                            'rgb(75, 192, 192)',
+                                            'rgb(255, 205, 86)',
+                                            'rgb(255, 99, 132)',
+                                            'rgb(54, 162, 235)'
+
+                                        ];
+
+                                        new Chart(document.querySelector('#doughnutChart'), {
+                                            type: 'doughnut',
+                                            data: {
+                                                labels: labels,
+                                                datasets: [{
+                                                    label: 'Thesis Count',
+                                                    data: counts,
+                                                    backgroundColor: backgroundColors.slice(0, counts.length),
+                                                    hoverOffset: 4
+                                                }]
+                                            }
+                                        });
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                            });
+                        </script>
+                        <!-- End Doughnut Chart -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Top Student Thesis</h5>
+                        <form id="top5Form">
+                            <div class="row g-3">
+                                <div class="col-lg-2">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" id="rank" class="form-control" placeholder=" " required>
+                                        <label class="control-label col-md-2">Rank</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" id="name" class="form-control" placeholder=" " required>
+                                        <label class="control-label col-md-2">Title</label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" id="year" class="form-control" placeholder=" " required>
+                                        <label class="control-label col-md-2">Year</label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+
+                                        <button type="submit" style="height: 60px; color: white; background-image: linear-gradient(to bottom right,#0052A2, #00172D);" class="btn btn-light">Add</button>
+                                        <button type="button" style="height: 60px; color:white; background-image: linear-gradient(to bottom right,#320002, #880816);" class="btn btn-light" onclick="clearTable()">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="table-responsive">
+                            <table id="top5Table" class="table table-bordered table-hover" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 80px;">Rank</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col" style="width: 80px;">Year</th>
+                                        <th scope="col" style="width: 20px;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <script>
+                            var top5Data = [];
+
+                            var form = document.querySelector('#top5Form');
+                            var tableBody = document.querySelector('#top5Table tbody');
+
+                            // Load data from local storage on page load
+                            window.addEventListener('load', function () {
+                                var storedData = localStorage.getItem('top5Data');
+                                if (storedData) {
+                                    top5Data = JSON.parse(storedData);
+                                    renderTable();
+                                }
+                            });
+
+                            form.addEventListener('submit', function (event) {
+                                event.preventDefault();
+
+                                var rankInput = document.querySelector('#rank');
+                                var nameInput = document.querySelector('#name');
+                                var yearInput = document.querySelector('#year');
+
+                                var rank = parseInt(rankInput.value);
+                                var name = nameInput.value;
+                                var year = parseInt(yearInput.value);
+
+                                // Check if rank already exists
+                                var existingEntry = top5Data.find(function (item) {
+                                    return item.rank === rank;
+                                });
+
+                                if (existingEntry) {
+                                    // Display warning message
+                                    alert('Rank already exists!');
+                                } else {
+                                    var newData = { rank: rank, name: name, year: year };
+                                    top5Data.push(newData);
+
+                                    rankInput.value = '';
+                                    nameInput.value = '';
+                                    yearInput.value = '';
+
+                                    renderTable();
+
+                                    // Save data to local storage
+                                    localStorage.setItem('top5Data', JSON.stringify(top5Data));
+                                }
+                            });
+
+
+                            function renderTable() {
+                                // Sort the data by rank in ascending order
+                                top5Data.sort(function (a, b) {
+                                    return a.rank - b.rank;
+                                });
+
+                                // Clear previous table rows
+                                tableBody.innerHTML = '';
+
+                                // Iterate over the sorted data and create table rows
+                                top5Data.forEach(function (item, index) {
+                                    var row = document.createElement('tr');
+                                    var rankCell = document.createElement('td');
+                                    rankCell.textContent = item.rank;
+                                    row.appendChild(rankCell);
+
+                                    var nameCell = document.createElement('td');
+                                    nameCell.textContent = item.name;
+                                    row.appendChild(nameCell);
+
+                                    var yearCell = document.createElement('td');
+                                    yearCell.textContent = item.year;
+                                    row.appendChild(yearCell);
+
+                                    var actionsCell = document.createElement('td');
+                                    var deleteButton = document.createElement('button');
+                                    deleteButton.type = 'button';
+                                    deleteButton.classList.add('btn', 'btn-danger');
+                                    deleteButton.textContent = 'Remove';
+                                    deleteButton.addEventListener('click', function () {
+                                        deleteRow(index);
+                                    });
+                                    actionsCell.appendChild(deleteButton);
+                                    row.appendChild(actionsCell);
+
+                                    tableBody.appendChild(row);
+                                });
+                            }
+
+
+                            function deleteRow(index) {
+                                top5Data.splice(index, 1);
+                                renderTable();
+
+                                // Save updated data to local storage
+                                localStorage.setItem('top5Data', JSON.stringify(top5Data));
+                            }
+
+                            function clearTable() {
+                                top5Data = [];
+                                renderTable();
+
+                                // Clear data from local storage
+                                localStorage.removeItem('top5Data');
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Top Funded Faculty Research</h5>
+                        <form id="topFundedForm">
+                            <div class="row g-3">
+                                <div class="col-lg-2">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" id="rankFunded" class="form-control" placeholder=" " required>
+                                        <label class="control-label col-md-2">Rank</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" id="titleFunded" class="form-control" placeholder=" " required>
+                                        <label class="control-label col-md-2">Title</label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" id="cost" class="form-control" placeholder=" " required>
+                                        <label class="control-label col-md-2">Cost</label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <button type="submit" style="height: 60px; color: white; background-image: linear-gradient(to bottom right,#0052A2, #00172D);" class="btn btn-light">Add</button>
+                                        <button type="button" style="height: 60px; color:white; background-image: linear-gradient(to bottom right,#320002, #880816);" class="btn btn-light" onclick="clearFundedTable()">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="table-responsive">
+                            <table id="topFundedTable" class="table table-bordered table-hover" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 80px;">Rank</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col" style="width: 150px;">Cost</th>
+                                        <th scope="col" style="width: 20px;">Actions</th> <!-- New column for delete buttons -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Table rows will be dynamically added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <script>
+                            var topFundedData = [];
+
+                            var fundedForm = document.querySelector('#topFundedForm');
+                            var fundedTableBody = document.querySelector('#topFundedTable tbody');
+
+                            // Load data from local storage on page load
+                            window.addEventListener('load', function () {
+                                var storedFundedData = localStorage.getItem('topFundedData');
+                                if (storedFundedData) {
+                                    topFundedData = JSON.parse(storedFundedData);
+                                    renderFundedTable();
+                                }
+                            });
+
+                            fundedForm.addEventListener('submit', function (event) {
+                                event.preventDefault();
+
+                                var rankFundedInput = document.querySelector('#rankFunded');
+                                var titleFundedInput = document.querySelector('#titleFunded');
+                                var costInput = document.querySelector('#cost');
+
+                                var rankFunded = parseInt(rankFundedInput.value);
+                                var titleFunded = titleFundedInput.value;
+                                var cost = parseInt(costInput.value);
+
+                                // Check if rank already exists
+                                var existingEntry = topFundedData.find(function (item) {
+                                    return item.rank === rankFunded;
+                                });
+
+                                if (existingEntry) {
+                                    // Display warning message
+                                    alert('Rank already exists!');
+                                } else {
+                                    var newFundedData = { rank: rankFunded, title: titleFunded, cost: cost };
+                                    topFundedData.push(newFundedData);
+
+                                    rankFundedInput.value = '';
+                                    titleFundedInput.value = '';
+                                    costInput.value = '';
+
+                                    renderFundedTable();
+
+                                    // Save data to local storage
+                                    localStorage.setItem('topFundedData', JSON.stringify(topFundedData));
+                                }
+                            });
+
+
+                            function renderFundedTable() {
+                                // Sort the data by rank in ascending order
+                                topFundedData.sort(function (a, b) {
+                                    return a.rank - b.rank;
+                                });
+
+                                // Clear previous table rows
+                                fundedTableBody.innerHTML = '';
+
+                                // Iterate over the sorted data and create table rows
+                                topFundedData.forEach(function (item, index) {
+                                    var row = document.createElement('tr');
+                                    var rankFundedCell = document.createElement('td');
+                                    rankFundedCell.textContent = item.rank;
+                                    row.appendChild(rankFundedCell);
+
+                                    var titleFundedCell = document.createElement('td');
+                                    titleFundedCell.textContent = item.title;
+                                    row.appendChild(titleFundedCell);
+
+                                    var costCell = document.createElement('td');
+                                    costCell.textContent = item.cost;
+                                    row.appendChild(costCell);
+
+                                    var actionsCell = document.createElement('td');
+                                    var deleteButton = document.createElement('button');
+                                    deleteButton.type = 'button';
+                                    deleteButton.classList.add('btn', 'btn-danger');
+                                    deleteButton.textContent = 'Remove';
+                                    deleteButton.addEventListener('click', function () {
+                                        deleteFundedRow(index);
+                                    });
+                                    actionsCell.appendChild(deleteButton);
+                                    row.appendChild(actionsCell);
+
+                                    fundedTableBody.appendChild(row);
+                                });
+                            }
+
+                            function deleteFundedRow(index) {
+                                topFundedData.splice(index, 1);
+                                renderFundedTable();
+
+                                // Save updated data to local storage
+                                localStorage.setItem('topFundedData', JSON.stringify(topFundedData));
+                            }
+
+                            function clearFundedTable() {
+                                topFundedData = [];
+                                renderFundedTable();
+
+                                // Clear data from local storage
+                                localStorage.removeItem('topFundedData');
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </section>
+</div>

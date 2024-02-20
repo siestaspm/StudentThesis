@@ -1,0 +1,80 @@
+﻿@model StudentThesis.Models.Thesis
+
+
+
+
+@{
+
+    <div class="container-fluid py-4">
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3" style="background-image: linear-gradient(to bottom right, #2EAAFA, #8C04DB); ">
+                <h4 class="m-0 font-weight-bold text-white">Add Files</h4>
+            </div>
+            <div class="card-body">
+
+
+                @using (Html.BeginForm("AddFiles", "FacultyTheses", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <br />
+                    <div class="row g-3">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " ", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+                        <label>New Files</label>
+                        <div>
+                            <input type="file" class="form-control" name="NewFiles" id="fileInput" multiple>
+                            @Html.ValidationMessageFor(model => model.NewFiles, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <script>
+                        document.getElementById('fileInput').addEventListener('change', function() {
+                         var files = this.files;
+                        var allowedExtensions = /(\.pdf)$/i;
+                        var maxSize = 100 * 1024 * 1024; // 100MB in bytes
+
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        if (!allowedExtensions.test(file.name)) {
+                        alert('Only PDF files are allowed.');
+                        this.value = null; // Clear the selected file(s)
+                        return false;
+                    }
+                    if (file.size > maxSize) {
+                alert('File size exceeds the maximum limit of 100MB.');
+                this.value = null; // Clear the selected file(s)
+                return false;
+                        }
+                    }
+                });
+                    </script>
+
+
+                    <br />
+                    <div class="form-group">
+                        <button type="submit" value="Create" class="btn btn-light rounded-pill" style="background-image: linear-gradient(to bottom left,#C7F800, #078513); color: white;">
+                            <i class="bx bx-plus" style="color: #ffffff;"></i> Upload
+                        </button>
+                        <hr />
+                    </div>
+
+                }
+
+                <button type="button" class="btn btn-light rounded-pill" style="background-image: linear-gradient(to bottom right,#0052A2, #00172D);">
+                    <i class="bx bxs-chevrons-left" style="color: #ffffff;"></i>
+                    @Html.ActionLink("Back to List", "Index", null, new { @style = "color:white;" })
+                </button>
+            </div>
+        </div>
+    </div>
+}

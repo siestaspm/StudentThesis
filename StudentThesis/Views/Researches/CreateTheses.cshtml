@@ -1,0 +1,148 @@
+﻿@model StudentThesis.Models.Research
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container-fluid position-relative bg-light d-flex p-0">
+    <div class="container-fluid pt-4 px-4">
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3" style="background-image: linear-gradient(to bottom right, #020080, #4188FF); ">
+                <h4 class="m-0 font-weight-bold text-white">Add Files & Create Research</h4>
+            </div>
+            <div class="card-body">
+
+
+                @using (Html.BeginForm("CreateTheses", "Researches", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <br />
+
+                    <div class="row g-3">
+
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                                @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => model.Keywords, htmlAttributes: new { @class = "control-label col-md-2" })
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.TypeOfResearch, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = " " } })
+                                @Html.ValidationMessageFor(model => model.TypeOfResearch, "", new { @class = "text-danger" })
+                                <label>Type of Research</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col">
+                            @Html.LabelFor(model => model.Abstract, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <input type="file" class="form-control" id="abstractFile" name="abstractFile" accept=".pdf" required>
+                        </div>
+
+                        <div class="col">
+                            @Html.LabelFor(model => model.FullPaper, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <input type="file" class="form-control" id="fullPaperFile" name="fullPaperFile" accept=".pdf" required>
+                        </div>
+
+                        <script>
+    document.getElementById('abstractFile').addEventListener('change', validateFile);
+    document.getElementById('fullPaperFile').addEventListener('change', validateFile);
+
+    function validateFile() {
+        var fileInput = this;
+        var file = fileInput.files[0];
+        var allowedExtensions = /(\.pdf)$/i;
+        var maxSize = 100 * 1024 * 1024; // 100MB in bytes
+
+        if (!allowedExtensions.test(file.name)) {
+            alert('Only PDF files are allowed.');
+            fileInput.value = ''; // Clear the selected file
+            return false;
+        }
+        if (file.size > maxSize) {
+            alert('File size exceeds the maximum limit of 100MB.');
+            fileInput.value = ''; // Clear the selected file
+            return false;
+        }
+    }
+                        </script>
+
+
+
+                    </div>
+
+                    <br />
+
+
+
+                    <div class="form-group visually-hidden">
+                        @Html.LabelFor(model => model.ThematicArea, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ThematicArea, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ThematicArea, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group visually-hidden">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group visually-hidden">
+                        @Html.LabelFor(model => model.AuthorCategoryID, "AuthorCategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("AuthorCategoryID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AuthorCategoryID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group visually-hidden">
+                        @Html.LabelFor(model => model.ThesisAdviser, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ThesisAdviser, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ThesisAdviser, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group visually-hidden">
+                        @Html.LabelFor(model => model.TechnicalCritic, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TechnicalCritic, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TechnicalCritic, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button type="submit" value="Save" class="btn btn-light rounded-pill" style="background-image: linear-gradient(to bottom left,#C7F800, #078513); color: white;">
+                            <i class="bx bx-plus" style="color: #ffffff;"></i> Create
+                        </button>
+                     
+                    </div>
+
+                }
+
+              
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Student Thesis</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- favicon -->
+    <link href="~/Assets/img/favicon.png" rel="icon">
+    <link href="~/Assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- g fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- vendor CSS files -->
+    <link href="~/Assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/Assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/Assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/Assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- datatables css to -->
+ 
+    <!-- main CSS file nyo -->
+    <link href="~/Assets/css/style.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+  
+
+   
+        @RenderBody()
+
+
+
+   
+
+  
+
+    <!-- vendor JS files -->
+    <script src="~/Assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/Assets/vendor/echarts/echarts.min.js"></script>
+    <script src="~/Assets/vendor/quill/quill.min.js"></script>
+    <script src="~/Assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/Assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/Assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- main jS fuile -->
+    <script src="~/Assets/js/main.js"></script>
+
+    <!-- for datatables -->
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

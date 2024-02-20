@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Student Thesis</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- favicon -->
+    <link href="~/Assets/img/favicon.png" rel="icon">
+    <link href="~/Assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- g fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- vendor CSS files -->
+    <link href="~/Assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/Assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/Assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/Assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- datatables css to -->
+    <!-- main CSS file nyo -->
+    <link href="~/Assets/css/style.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="~/Home/Index" class="logo d-flex align-items-center">
+                <img src="~/Assets/img/LogoName.png" alt="">
+                <span class="d-none d-lg-block">‎‎ R A S - D C S</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown pe-3">
+
+                    @Html.Partial("_LoginPartial")
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed " href="~/Home/Index">
+                    <i class="bx bxs-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <hr />
+
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#students-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bx bxs-user-badge"></i><span>Students</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="students-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="~/Theses/Create">
+                            <i class="bi bi-circle"></i><span>Add New Student Thesis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Theses/Index">
+                            <i class="bi bi-circle"></i><span>Student Thesis List</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/Theses/InitialThesis">
+                            <i class="bi bi-circle"></i><span>Initial Thesis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Theses/DefenseSchedule">
+                            <i class="bi bi-circle"></i><span>Outline for Defense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Theses/Development">
+                            <i class="bi bi-circle"></i><span>Development</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Theses/FinalDefense">
+                            <i class="bi bi-circle"></i><span>Final Defense</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Theses/ApprovedManuscript">
+                            <i class="bi bi-circle"></i><span>Approved Manuscript</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Theses/StudentArchiveIndex ">
+                            <i class="bi bi-circle"></i><span>Student Thesis Archives</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <hr />
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#ffaculty-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bx bxs-briefcase-alt"></i><span>Faculty</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="ffaculty-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="~/FacultyTheses/Create ">
+                            <i class="bi bi-circle"></i><span>Add New Faculty Thesis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/FacultyTheses/Index ">
+                            <i class="bi bi-circle"></i><span>Faculty Thesis List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/FacultyTheses/Ongoing">
+                            <i class="bi bi-circle"></i><span>Ongoing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/FacultyTheses/Complete ">
+                            <i class="bi bi-circle"></i><span>Complete</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/FacultyTheses/FacultyArchiveIndex ">
+                            <i class="bi bi-circle"></i><span>Faculty Thesis Archives</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+            <hr />
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#researches-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bx bxs-folder-open"></i><span>Researches</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="researches-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="~/Researches/Create">
+                            <i class="bi bi-circle"></i><span>Add New Research</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Researches/Index">
+                            <i class="bi bi-circle"></i><span>Faculty Research List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Researches/IndexStudent">
+                            <i class="bi bi-circle"></i><span>Student Research List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Researches/StudentResearchArchive">
+                            <i class="bi bi-circle"></i><span>Research Archives</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+            <hr />
+
+            <li class="nav-heading">Account Settings</li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="~/Account/Register">
+                    <i class="bi bi-person"></i>
+                    <span>Add a New Account</span>
+                </a>
+            </li>
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+        @RenderBody()
+
+    </main>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>RAS-DCS</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+
+            RAS-DCS 2023
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- vendor JS files -->
+    <script src="~/Assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/Assets/vendor/echarts/echarts.min.js"></script>
+    <script src="~/Assets/vendor/quill/quill.min.js"></script>
+    <script src="~/Assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/Assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/Assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- main jS fuile -->
+    <script src="~/Assets/js/main.js"></script>
+
+    <!-- for datatables -->
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
